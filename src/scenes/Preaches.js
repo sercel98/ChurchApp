@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Home(props) {
+export default function Preaches(props) {
   return (
     <View style={styles.container}>
-      <Text>Hola Home</Text>
+      <Text>Hola preaches</Text>
     </View>
   );
 }

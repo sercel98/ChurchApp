@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/poppins": "^0.1.0",
+    "@expo-google-fonts/roboto": "^0.1.0",
     "@react-native-community/masked-view": "0.1.6",
     "@react-navigation/material-bottom-tabs": "^5.2.16",
     "@react-navigation/native": "^5.7.3",

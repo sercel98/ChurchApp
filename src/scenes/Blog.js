@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function Blog(props) {
   return (
     <View style={styles.container}>
-      <Text>Hola blog</Text>
+      <Text>Hola Blog</Text>
     </View>
   );
 }
@@ -12,7 +12,6 @@ export default function Blog(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },

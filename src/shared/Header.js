@@ -19,28 +19,16 @@ export default function Header(props) {
   };
 
   const goBack = () => navigation.goBack();
-  console.log(route);
+  console.log(navigation);
   return (
     <View style={styles.header}>
       <StatusBar barStyle="light-content" />
-      {route.name === "Home" ? (
-        <MaterialIcons
-          name="keyboard-return"
-          size={30}
-          onPress={goBack}
-          style={styles.headerIcon}
-        />
-      ) : (
-        <View></View>
-      )}
-
       <TouchableOpacity onPress={goHome}>
         <Image
           style={styles.headerLogo}
           source={require("../../assets/images/imageHeader.png")}
         />
       </TouchableOpacity>
-      <View></View>
     </View>
   );
 }
@@ -68,6 +56,6 @@ const styles = StyleSheet.create({
   },
   headerIcon: {
     color: "#000",
-    position: "absolute", 
+    position: "absolute",
   },
 });

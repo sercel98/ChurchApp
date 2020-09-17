@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function News(props) {
   return (
     <View style={styles.container}>
-      <Text>Hola from news</Text>
+      <Text>Hola News</Text>
     </View>
   );
 }
@@ -12,7 +12,6 @@ export default function News(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },

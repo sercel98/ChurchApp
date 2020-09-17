@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function Preaches(props) {
   return (
     <View style={styles.container}>
-      <Text>Hola preaches</Text>
+      <Text>Hola Preaches</Text>
     </View>
   );
 }
@@ -12,7 +12,6 @@ export default function Preaches(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },

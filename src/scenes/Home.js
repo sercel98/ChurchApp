@@ -1,10 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Header from "../shared/Header";
 
 export default function Home(props) {
   return (
-    <View style={styles.container}>
-      <Text>Hola Home</Text>
+    <View>
+      <Header />
+      <View style={styles.container}>
+        <Text>Hola Home</Text>
+      </View>
     </View>
   );
 }

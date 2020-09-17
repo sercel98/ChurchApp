@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
   StatusBar,
+  Text,
   TouchableOpacity,
 } from "react-native";
 import { useRoute } from "@react-navigation/native";
@@ -18,11 +19,10 @@ export default function Header(props) {
   };
 
   const goBack = () => navigation.goBack();
-
+  console.log(route);
   return (
     <View style={styles.header}>
       <StatusBar barStyle="light-content" />
-
       {route.name === "Home" ? (
         <MaterialIcons
           name="keyboard-return"
@@ -30,11 +30,14 @@ export default function Header(props) {
           onPress={goBack}
           style={styles.headerIcon}
         />
-      ) : null}
+      ) : (
+        <View></View>
+      )}
+
       <TouchableOpacity onPress={goHome}>
         <Image
           style={styles.headerLogo}
-          source={require("../../assets/images/icon.png")}
+          source={require("../../assets/images/imageHeader.png")}
         />
       </TouchableOpacity>
       <View></View>
@@ -45,24 +48,26 @@ export default function Header(props) {
 const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
-    justifyContent: "space-between",
     backgroundColor: "#FFF",
-    paddingHorizontal: 22,
-    paddingVertical: 15,
-    height: 70,
+    shadowColor: "#000",
+    justifyContent: "center",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginBottom: 12,
+    paddingVertical: 8,
   },
   headerLogo: {
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
+    alignSelf: "center",
   },
   headerIcon: {
-    color: "#FFF",
-    paddingTop: 2,
-  },
-  imageContainer: {
-    height: "100%",
-    overflow: "visible",
-    justifyContent: "center",
-    alignItems: "center",
+    color: "#000",
+    position: "absolute", 
   },
 });

@@ -3,10 +3,9 @@ import Home from "../scenes/Home";
 import News from "../scenes/News";
 import Blog from "../scenes/Blog";
 import Preaches from "../scenes/Preaches";
-import Header from "../shared/Header";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
 const Tab = createMaterialBottomTabNavigator();
@@ -25,7 +24,7 @@ export default function AppStackNavigation() {
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
+            <MaterialCommunityIcons name="home" color={color} size={24} />
           ),
         }}
       />
@@ -35,7 +34,7 @@ export default function AppStackNavigation() {
         options={{
           tabBarLabel: "Preaches",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bible" color={color} size={26} />
+            <MaterialCommunityIcons name="bible" color={color} size={24} />
           ),
         }}
       />
@@ -45,7 +44,7 @@ export default function AppStackNavigation() {
         options={{
           tabBarLabel: "News",
           tabBarIcon: ({ color }) => (
-            <FontAwesome name="newspaper-o" size={24} color={color} />
+            <FontAwesome5 name="newspaper" size={21} color={color} />
           ),
         }}
       />
@@ -55,7 +54,7 @@ export default function AppStackNavigation() {
         options={{
           tabBarLabel: "Blog",
           tabBarIcon: ({ color }) => (
-            <AntDesign name="notification" size={24} color={color} />
+            <AntDesign name="notification" size={22} color={color} />
           ),
         }}
       />

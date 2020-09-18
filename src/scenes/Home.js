@@ -1,6 +1,7 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+import { ScrollView } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import HorizontalList from "../components/HorizontalList";
 
 export default function Home(props) {
   const predicasData = [
@@ -102,73 +103,29 @@ export default function Home(props) {
     },
   ];
 
-  const renderCards = ({ item }) => {
-    return (
-      <Image
-        style={{ width: 150, height: 120 }}
-        source={{ uri: item.image }}
-      ></Image>
-    );
-  };
-
   return (
-    <View style={styles.container}>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: "column",
-          marginHorizontal: 12,
-          marginVertical: 8,
-          maxHeight: "30%",
-        }}
-      >
-        <Text style={styles.textSection}>Prédicas recientes</Text>
-        <FlatList
-          style={styles.itemList}
-          horizontal
-          ItemSeparatorComponent={() => <View style={{ width: 15 }} />}
-          renderItem={renderCards}
-          data={predicasData}
-        />
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.section}>
+          <Text style={styles.textSection}>Prédicas recientes</Text>
+          <HorizontalList data={predicasData} />
+        </View>
+        <View style={styles.section}>
+          <Text style={styles.textSection}>Noticias recientes</Text>
+          <HorizontalList data={predicasData} />
+        </View>
+        <View style={styles.section}>
+          <Text style={styles.textSection}>
+            Blogs recientes
+          </Text>
+          <HorizontalList data={predicasData} />
+        </View>
+        <View style={styles.section}>
+          <Text style={styles.textSection}>Eventos recientes</Text>
+          <HorizontalList data={predicasData} />
+        </View>
       </View>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: "column",
-          marginHorizontal: 12,
-          marginVertical: 8,
-          maxHeight: "30%",
-        }}
-      >
-        <Text style={styles.textSection}>Noticias recientes</Text>
-        <FlatList
-          style={styles.itemList}
-          horizontal
-          ItemSeparatorComponent={() => <View style={{ width: 15 }} />}
-          renderItem={renderCards}
-          data={newsData}
-        />
-      </View>
-
-      <View
-        style={{
-          flex: 1,
-          flexDirection: "column",
-          marginHorizontal: 12,
-          marginVertical: 8,
-          maxHeight: "30%",
-        }}
-      >
-        <Text style={styles.textSection}>Publicaciones recientes del blog</Text>
-        <FlatList
-          style={styles.itemList}
-          horizontal
-          ItemSeparatorComponent={() => <View style={{ width: 15 }} />}
-          renderItem={renderCards}
-          data={blogData}
-        />
-      </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -178,11 +135,14 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-start",
   },
+  section: {
+    flex: 1,
+    flexDirection: "column",
+    marginHorizontal: 12,
+    marginVertical: 8,
+  },
   textSection: {
     fontSize: 22,
     fontFamily: "Roboto_700Bold",
-  },
-  itemList: {
-    marginVertical: 12,
   },
 });

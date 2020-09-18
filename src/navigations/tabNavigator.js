@@ -5,8 +5,7 @@ import Blog from "../scenes/Blog";
 import Preaches from "../scenes/Preaches";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -19,22 +18,12 @@ export default function TabNavigator() {
       barStyle={{ backgroundColor: "#694fad" }}
     >
       <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarLabel: "Home",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={24} />
-          ),
-        }}
-      />
-      <Tab.Screen
         name="Preaches"
         component={Preaches}
         options={{
-          tabBarLabel: "Preaches",
+          tabBarLabel: "Prédicas",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bible" color={color} size={24} />
+            <MaterialCommunityIcons name="bible" color={color} size={26} />
           ),
         }}
       />
@@ -42,9 +31,19 @@ export default function TabNavigator() {
         name="News"
         component={News}
         options={{
-          tabBarLabel: "News",
+          tabBarLabel: "Noticias",
           tabBarIcon: ({ color }) => (
-            <FontAwesome5 name="newspaper" size={21} color={color} />
+            <MaterialCommunityIcons name="newspaper" size={26} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="home" size={26} color={color} />
           ),
         }}
       />
@@ -54,7 +53,17 @@ export default function TabNavigator() {
         options={{
           tabBarLabel: "Blog",
           tabBarIcon: ({ color }) => (
-            <AntDesign name="notification" size={22} color={color} />
+            <MaterialIcons name="bookmark" size={26} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Events"
+        component={Blog}
+        options={{
+          tabBarLabel: "Eventos",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="event" size={26} color={color} />
           ),
         }}
       />

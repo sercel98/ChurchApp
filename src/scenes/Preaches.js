@@ -9,13 +9,14 @@ export default function Preaches(props) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.textSection}>Prédicas</Text>
       <Searchbar
-        placeholder="Search"
+      style={{backgroundColor: "#C4C4C4", borderRadius: 50}}
+        placeholder="Buscar"
         onChangeText={onChangeSearch}
         value={searchQuery}
+        inputStyle={{fontFamily: 'Roboto_300Light'}}
       />
-
-      <Text>Hola Preaches</Text>
       <TouchableOpacity style={styles.filterButton}>
         <MaterialCommunityIcons name="filter" size={30} color="white" />
       </TouchableOpacity>
@@ -26,6 +27,7 @@ export default function Preaches(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginHorizontal: 12,
   },
   filterButton: {
     position: "absolute",
@@ -37,5 +39,10 @@ const styles = StyleSheet.create({
     bottom: 30,
     backgroundColor: "#694fad",
     borderRadius: 50,
+  },
+  textSection: {
+    fontSize: 26,
+    fontFamily: "Roboto_700Bold",
+    marginBottom: 8
   },
 });

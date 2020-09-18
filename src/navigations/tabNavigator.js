@@ -2,6 +2,7 @@ import React from "react";
 import Home from "../scenes/Home";
 import News from "../scenes/News";
 import Blog from "../scenes/Blog";
+import Events from "../scenes/Events";
 import Preaches from "../scenes/Preaches";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -59,7 +60,7 @@ export default function TabNavigator() {
       />
       <Tab.Screen
         name="Events"
-        component={Blog}
+        component={Events}
         options={{
           tabBarLabel: "Eventos",
           tabBarIcon: ({ color }) => (

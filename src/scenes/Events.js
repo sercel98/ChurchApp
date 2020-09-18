@@ -3,13 +3,12 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function News(props) {
+export default function Events(props) {
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query) => setSearchQuery(query);
-
   return (
     <View style={styles.container}>
-      <Text style={styles.textSection}>Noticias</Text>
+      <Text style={styles.textSection}>Eventos</Text>
       <Searchbar
         style={{ backgroundColor: "#C4C4C4", borderRadius: 50 }}
         placeholder="Buscar"
@@ -23,7 +22,6 @@ export default function News(props) {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

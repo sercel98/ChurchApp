@@ -1,15 +1,22 @@
-import React from "react";
-import { TouchableOpacity } from "react-native";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
+import Filter from "../components/Filter"
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Preaches(props) {
+  const [showFilter, setShowFilter] = useState(false);
+
+  renderFilterItem = () => {
+
+  };
+
   return (
     <View style={styles.container}>
       <Text>Hola Preaches</Text>
       <TouchableOpacity style={styles.filterButton}>
         <MaterialCommunityIcons name="filter" size={30} color="white" />
       </TouchableOpacity>
+      <Filter></Filter>
     </View>
   );
 }

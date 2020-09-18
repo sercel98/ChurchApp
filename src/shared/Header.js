@@ -19,7 +19,6 @@ export default function Header(props) {
   };
 
   const goBack = () => navigation.goBack();
-  console.log(navigation);
   return (
     <View style={styles.header}>
       <StatusBar barStyle="light-content" />

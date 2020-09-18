@@ -116,7 +116,7 @@ export default function Home(props) {
       <View
         style={{
           flex: 1,
-          flexDirection: "Column",
+          flexDirection: "column",
           marginHorizontal: 12,
           marginVertical: 8,
           maxHeight: "30%",
@@ -134,7 +134,7 @@ export default function Home(props) {
       <View
         style={{
           flex: 1,
-          flexDirection: "Column",
+          flexDirection: "column",
           marginHorizontal: 12,
           marginVertical: 8,
           maxHeight: "30%",
@@ -153,7 +153,7 @@ export default function Home(props) {
       <View
         style={{
           flex: 1,
-          flexDirection: "Column",
+          flexDirection: "column",
           marginHorizontal: 12,
           marginVertical: 8,
           maxHeight: "30%",

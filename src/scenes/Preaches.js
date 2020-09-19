@@ -59,7 +59,6 @@ export default function Preaches(props) {
         value={searchQuery}
         inputStyle={{ fontFamily: "Roboto_300Light" }}
       />
-
       <FlatList
         style={styles.itemList}
         ItemSeparatorComponent={() => <View style={{ height: 15 }} />}
@@ -70,7 +69,6 @@ export default function Preaches(props) {
         initialNumToRender={30}
         keyExtractor={(item, index) => item.name}
       />
-
       <TouchableOpacity style={styles.filterButton}>
         <MaterialCommunityIcons name="filter" size={30} color="white" />
       </TouchableOpacity>

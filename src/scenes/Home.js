@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
 import HorizontalList from "../components/HorizontalList";
 
 export default function Home(props) {
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
+  //TODO: Agregar  ícono de cargando.
+  const [isLoading, setIsLoading] = useState(false);
+  //TODO: Agregar mensaje de error si los hay.
+  const [hasError, setErrors] = useState(false);
+  const limit = 30;
+
+  const api = `https://pokeapi.co/api/v2/pokemon?offset=${page}&limit=${limit}`;
+
+  //hacer card
+  const renderCards = ({ item }) => {
+    return <Text>{item.name}</Text>;
+  };
+
   const predicasData = [
     {
       key: "1",
@@ -115,9 +130,7 @@ export default function Home(props) {
           <HorizontalList data={predicasData} />
         </View>
         <View style={styles.section}>
-          <Text style={styles.textSection}>
-            Blogs recientes
-          </Text>
+          <Text style={styles.textSection}>Blogs recientes</Text>
           <HorizontalList data={predicasData} />
         </View>
         <View style={styles.section}>

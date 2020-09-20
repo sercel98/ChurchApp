@@ -3,14 +3,11 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   FlatList,
 } from "react-native";
-import Filter from "../components/PreachesFilter";
+import PreachesFilter from "../components/PreachesFilter";
+import Filter from "../components/Filter";
 import { Searchbar } from "react-native-paper";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import AwesomeAlert from "react-native-awesome-alerts";
-import { render } from "react-dom";
 
 export default function Preaches(props) {
   //filter values
@@ -77,38 +74,6 @@ export default function Preaches(props) {
 
   return (
     <View style={styles.container}>
-      <AwesomeAlert
-        show={showFilter}
-        showProgress={false}
-        closeOnTouchOutside={true}
-        closeOnHardwareBackPress={false}
-        showCancelButton={false}
-        showConfirmButton={false}
-        cancelText="Cancelar"
-        confirmText="Aplicar Filtros"
-        confirmButtonColor="green"
-        overlayStyle={styles.alertContainer}
-        contentContainerStyle={styles.alertPopup}
-        customView={
-          <Filter
-            updateFilter={updateFilterParams}
-            initialDate={initialDateFilter}
-            finalDate={finalDateFilter}
-            biblicalPassge={biblicalPassgeFilter}
-            keyWords={keyWordsFilter}
-            showAlert={setShowFilter}
-          ></Filter>
-        }
-        onCancelPressed={() => {
-          setShowFilter(false);
-        }}
-        onConfirmPressed={() => {
-          setShowFilter(false);
-        }}
-        onDismiss={() => {
-          setShowFilter(false);
-        }}
-      />
       <Text style={styles.textSection}>Prédicas</Text>
       <Searchbar
         style={{ backgroundColor: "#C4C4C4", borderRadius: 50 }}
@@ -127,12 +92,20 @@ export default function Preaches(props) {
         initialNumToRender={30}
         keyExtractor={(item, index) => item.name}
       />
-      <TouchableOpacity
-        style={styles.filterButton}
-        onPress={() => renderFilterItem()}
-      >
-        <MaterialCommunityIcons name="filter" size={30} color="white" />
-      </TouchableOpacity>
+      <Filter
+        showFilter={showFilter}
+        renderFilterItem={renderFilterItem}
+        filterComponent={
+          <PreachesFilter
+          updateFilter={updateFilterParams}
+          initialDate={initialDateFilter}
+          finalDate={finalDateFilter}
+          biblicalPassge={biblicalPassgeFilter}
+          keyWords={keyWordsFilter}
+          showAlert={setShowFilter}
+        ></PreachesFilter>
+        }
+      ></Filter>
     </View>
   );
 }
@@ -142,34 +115,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 12,
   },
-  filterButton: {
-    position: "absolute",
-    width: 50,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    right: 30,
-    bottom: 30,
-    backgroundColor: "#694fad",
-    borderRadius: 50,
-  },
   textSection: {
     fontSize: 26,
     fontFamily: "Roboto_700Bold",
     marginBottom: 8,
-  },
-  alertContainer: {
-    height: "100%",
-    width: "100%",
-  },
-  alertPopup: {
-    borderRadius: 15,
-    width: "100%",
-    justifyContent:"center",
-  },
-  alertButtonText: {
-    fontSize: 16,
-    fontFamily: "Roboto_500Medium",
-    lineHeight: 20,
   },
 });

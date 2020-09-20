@@ -10,16 +10,17 @@ export default function Filter(props) {
   const [biblicalPassge, setBiblicalPassge] = useState(props.biblicalPassge);
   const [keyWords, setKeyWords] = useState(props.keyWords);
 
- const resetFilterValues = () => {
+  const resetFilterValues = () => {
     setInitialDate(null);
     setFinalDate(null);
     setBiblicalPassge(null);
     setKeyWords(null);
   };
 
-  const updateFilterValues=()=>{
-    props.updateFilter?.(initialDate, finalDate, biblicalPassge, keyWords);
-  }
+  const updateFilterValues = () => {
+    props.updateFilter(initialDate, finalDate, biblicalPassge, keyWords);
+    props.showAlert(false);
+  };
 
   return (
     <View>
@@ -29,14 +30,14 @@ export default function Filter(props) {
         value={biblicalPassge}
         style={[styles.SectionStyle]}
         id="passageInputText"
-        onChangeText={(text)=>setBiblicalPassge(text)}
+        onChangeText={(text) => setBiblicalPassge(text)}
       />
       <Text style={styles.textInputTitle}>Palabras Clave</Text>
       <TextInput
         value={keyWords}
         style={[styles.SectionStyle]}
         id="preachInputText"
-        onChangeText={(text)=>setKeyWords(text)}
+        onChangeText={(text) => setKeyWords(text)}
       />
       <Text style={styles.textInputTitle}>Fecha de publicación</Text>
       <Text style={styles.textSubTitle}>Desde:</Text>
@@ -98,12 +99,18 @@ export default function Filter(props) {
           style={styles.resetFilterButton}
           onPress={() => resetFilterValues()}
         >
-          <Text style={styles.resetFilterButtonText}>Limpiar Filtros</Text>
+          <Text style={styles.resetFilterButtonText}>Limpiar Campos</Text>
         </TouchableOpacity>
       </View>
-      <View style={{ alignItems: "center" }}>
+      <View style={{ justifyContent: "space-between", flexDirection: "row" }}>
         <TouchableOpacity
-          style={styles.resetFilterButton}
+          style={styles.actionFilterButton}
+          onPress={() => props.showAlert(false)}
+        >
+          <Text style={styles.resetFilterButtonText}>Cancelar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.confirmFilterButton}
           onPress={() => updateFilterValues()}
         >
           <Text style={styles.resetFilterButtonText}>Aplicar Filtros</Text>
@@ -147,6 +154,25 @@ const styles = StyleSheet.create({
     backgroundColor: "#3586BC",
     borderRadius: 5,
     width: "50%",
+    marginTop: 20,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  actionFilterButton: {
+    backgroundColor: "gray",
+    borderRadius: 5,
+    width: "45%",
+    height: 40,
+    marginTop: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  confirmFilterButton: {
+    backgroundColor: "green",
+    borderRadius: 5,
+    width: "45%",
+    height: 40,
     marginTop: 20,
     justifyContent: "center",
     alignItems: "center",

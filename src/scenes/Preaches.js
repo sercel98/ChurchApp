@@ -37,16 +37,6 @@ export default function Preaches(props) {
     setFinalDateFilter(finalDate);
     setBiblicalPassgeFilter(bblicalPssg);
     setKeyWordsFilter(keyWords);
-    printInfo();
-  };
-
-  const printInfo = () => {
-    console.log(
-      initialDateFilter,
-      finalDateFilter,
-      biblicalPassgeFilter,
-      keyWordsFilter
-    );
   };
 
   const [data, setData] = useState([]);
@@ -106,6 +96,7 @@ export default function Preaches(props) {
             finalDate={finalDateFilter}
             biblicalPassge={biblicalPassgeFilter}
             keyWords={keyWordsFilter}
+            showAlert={setShowFilter}
           ></Filter>
         }
         onCancelPressed={() => {

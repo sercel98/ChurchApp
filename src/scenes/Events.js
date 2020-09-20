@@ -15,10 +15,12 @@ export default function Events(props) {
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
+
   //TODO: Agregar  ícono de cargando.
   const [isLoading, setIsLoading] = useState(false);
   //TODO: Agregar mensaje de error si los hay.
   const [hasError, setErrors] = useState(false);
+
   const limit = 30;
 
   const api = `https://pokeapi.co/api/v2/pokemon?offset=${page}&limit=${limit}`;
@@ -34,12 +36,12 @@ export default function Events(props) {
     let request = await response.json();
     if (request.results) {
       setData([...data, ...request.results]);
+      setPage(page + limit);
     }
-    setPage(page + limit);
 
     setIsLoading(false);
   };
-
+  //Se ejecuta la primera vez solamente
   useEffect(() => {
     fetchData();
   }, []);
@@ -63,8 +65,8 @@ export default function Events(props) {
         ItemSeparatorComponent={() => <View style={{ height: 15 }} />}
         renderItem={renderCards}
         onEndReached={onLoadMore}
-        data={data}
         onEndReachedThreshold={0.5}
+        data={data}
         initialNumToRender={30}
         keyExtractor={(item, index) => item.name}
       />

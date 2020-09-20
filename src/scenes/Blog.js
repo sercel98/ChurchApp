@@ -8,10 +8,12 @@ import {
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AppLoading } from "expo";
 
 export default function Blog(props) {
   const [searchQuery, setSearchQuery] = useState("");
-  const onChangeSearch = (query) => setSearchQuery(query);
+
+  const [filteredData, setFilteredData] = useState([]);
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
@@ -26,32 +28,65 @@ export default function Blog(props) {
 
   //hacer card
   const renderCards = ({ item }) => {
-    return <Text>{item.name}</Text>;
+    return (
+      <View>
+        <Text>{item.name}</Text>
+      </View>
+    );
   };
+
+  const onChangeSearch = (query) => setSearchQuery(query);
 
   const fetchData = async () => {
     setIsLoading(true);
     let response = await fetch(api);
     let request = await response.json();
+
     if (request.results) {
       setData([...data, ...request.results]);
+      setPage(page + limit);
+    } else {
+      setErrors(true);
     }
-    setPage(page + limit);
-
     setIsLoading(false);
+    console.log("Rquest");
   };
 
+  //1. Carga data inicial
   useEffect(() => {
     fetchData();
+    console.log("use 1");
   }, []);
 
+  //Como cambio data, me ejecuto
+  useEffect(() => {
+    console.log("use 2");
+
+    setFilteredData(
+      data.filter((item) => {
+        return item.name.toLowerCase().includes(searchQuery.toLowerCase());
+      })
+    );
+  }, [searchQuery, data]);
+
   const onLoadMore = useCallback(() => {
+    console.log("use 3");
+
     fetchData();
   });
+
+  if (isLoading) {
+    return <AppLoading />;
+  }
+
+  if (hasError) {
+    return <Text>We can't fetch right now </Text>;
+  }
 
   return (
     <View style={styles.container}>
       <Text style={styles.textSection}>Blogs</Text>
+
       <Searchbar
         style={{ backgroundColor: "#C4C4C4", borderRadius: 50 }}
         placeholder="Buscar"
@@ -64,9 +99,9 @@ export default function Blog(props) {
         ItemSeparatorComponent={() => <View style={{ height: 15 }} />}
         renderItem={renderCards}
         onEndReached={onLoadMore}
-        data={data}
+        data={filteredData}
         onEndReachedThreshold={0.5}
-        initialNumToRender={30}
+        initialNumToRender={10}
         keyExtractor={(item, index) => item.name}
       />
       <TouchableOpacity style={styles.filterButton}>

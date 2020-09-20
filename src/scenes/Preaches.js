@@ -26,7 +26,11 @@ export default function Preaches(props) {
 
   //hacer card
   const renderCards = ({ item }) => {
-    return <Text>{item.name}</Text>;
+    return (
+      <View>
+        <Text>{item.name}</Text>
+      </View>
+    );
   };
 
   const fetchData = async () => {

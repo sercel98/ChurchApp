@@ -5,10 +5,10 @@ import { Text, StyleSheet, TextInput } from "react-native";
 import DatePicker from "react-native-datepicker";
 
 export default function Filter(props) {
-  const [initialDate, setInitialDate] = useState(null);
-  const [finalDate, setFinalDate] = useState(null);
-  const [biblicalPassge, setBiblicalPassge] = useState(null);
-  const [keyWords, setKeyWords] = useState(null);
+  const [initialDate, setInitialDate] = useState(props.initialDate);
+  const [finalDate, setFinalDate] = useState(props.finalDate);
+  const [biblicalPassge, setBiblicalPassge] = useState(props.biblicalPassge);
+  const [keyWords, setKeyWords] = useState(props.keyWords);
 
  const resetFilterValues = () => {
     setInitialDate(null);
@@ -16,6 +16,10 @@ export default function Filter(props) {
     setBiblicalPassge(null);
     setKeyWords(null);
   };
+
+  const updateFilterValues=()=>{
+    props.updateFilter?.(initialDate, finalDate, biblicalPassge, keyWords);
+  }
 
   return (
     <View>
@@ -95,6 +99,14 @@ export default function Filter(props) {
           onPress={() => resetFilterValues()}
         >
           <Text style={styles.resetFilterButtonText}>Limpiar Filtros</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ alignItems: "center" }}>
+        <TouchableOpacity
+          style={styles.resetFilterButton}
+          onPress={() => updateFilterValues()}
+        >
+          <Text style={styles.resetFilterButtonText}>Aplicar Filtros</Text>
         </TouchableOpacity>
       </View>
     </View>

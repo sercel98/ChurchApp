@@ -13,19 +13,41 @@ import AwesomeAlert from "react-native-awesome-alerts";
 import { render } from "react-dom";
 
 export default function Preaches(props) {
+  //filter values
   const [initialDateFilter, setInitialDateFilter] = useState(null);
   const [finalDateFilter, setFinalDateFilter] = useState(null);
   const [biblicalPassgeFilter, setBiblicalPassgeFilter] = useState(null);
   const [keyWordsFilter, setKeyWordsFilter] = useState(null);
+  
   const [showFilter, setShowFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query) => setSearchQuery(query);
-  
+
   const renderFilterItem = () => {
     setShowFilter(true);
   };
 
-  
+  const updateFilterParams = (
+    initialDate,
+    finalDate,
+    bblicalPssg,
+    keyWords
+  ) => {
+    setInitialDateFilter(initialDate);
+    setFinalDateFilter(finalDate);
+    setBiblicalPassgeFilter(bblicalPssg);
+    setKeyWordsFilter(keyWords);
+    printInfo();
+  };
+
+  const printInfo = () => {
+    console.log(
+      initialDateFilter,
+      finalDateFilter,
+      biblicalPassgeFilter,
+      keyWordsFilter
+    );
+  };
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
@@ -70,16 +92,22 @@ export default function Preaches(props) {
         showProgress={false}
         closeOnTouchOutside={true}
         closeOnHardwareBackPress={false}
-        showCancelButton={true}
-        showConfirmButton={true}
+        showCancelButton={false}
+        showConfirmButton={false}
         cancelText="Cancelar"
         confirmText="Aplicar Filtros"
         confirmButtonColor="green"
         overlayStyle={styles.alertContainer}
         contentContainerStyle={styles.alertPopup}
-        confirmButtonTextStyle={styles.alertButtonText}
-        cancelButtonTextStyle={styles.alertButtonText}
-        customView={<Filter></Filter>}
+        customView={
+          <Filter
+            updateFilter={updateFilterParams}
+            initialDate={initialDateFilter}
+            finalDate={finalDateFilter}
+            biblicalPassge={biblicalPassgeFilter}
+            keyWords={keyWordsFilter}
+          ></Filter>
+        }
         onCancelPressed={() => {
           setShowFilter(false);
         }}
@@ -145,6 +173,8 @@ const styles = StyleSheet.create({
   },
   alertPopup: {
     borderRadius: 15,
+    width: "100%",
+    justifyContent:"center",
   },
   alertButtonText: {
     fontSize: 16,

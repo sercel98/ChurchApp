@@ -19,6 +19,9 @@ export default function Filter(props) {
         overlayStyle={styles.alertContainer}
         contentContainerStyle={styles.alertPopup}
         customView={props.filterComponent}
+        onDismiss={()=>{
+            props.hideFilterItem(false);
+        }}
       />
       <TouchableOpacity
         style={styles.filterButton}

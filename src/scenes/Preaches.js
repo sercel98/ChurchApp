@@ -95,6 +95,7 @@ export default function Preaches(props) {
       <Filter
         showFilter={showFilter}
         renderFilterItem={renderFilterItem}
+        hideFilterItem={setShowFilter}
         filterComponent={
           <PreachesFilter
           updateFilter={updateFilterParams}

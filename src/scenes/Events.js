@@ -88,7 +88,7 @@ export default function Events(props) {
       />
       <FlatList
         style={styles.itemList}
-        ItemSeparatorComponent={() => <View style={{ height: 15 }} />}
+        ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
         renderItem={renderCards}
         onEndReached={onLoadMore}
         onEndReachedThreshold={0.5}
@@ -134,5 +134,8 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: "Roboto_700Bold",
     marginBottom: 8,
+  },
+  itemList: {
+    marginTop: 20,
   },
 });

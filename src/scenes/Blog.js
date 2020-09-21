@@ -1,10 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-} from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import { Searchbar } from "react-native-paper";
 import BlogCard from "../components/BlogCard";
 import { AppLoading } from "expo";
@@ -145,7 +140,7 @@ export default function Blog(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 20,
+    marginHorizontal: 12,
   },
   filterButton: {
     position: "absolute",

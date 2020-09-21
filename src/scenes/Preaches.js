@@ -1,13 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-} from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import PreachesFilter from "../components/PreachesFilter";
 import Filter from "../components/Filter";
 import { Searchbar } from "react-native-paper";
+import PreachCard from "../components/PreachCard";
 
 export default function Preaches(props) {
   //filter values
@@ -15,7 +11,7 @@ export default function Preaches(props) {
   const [finalDateFilter, setFinalDateFilter] = useState(null);
   const [biblicalPassgeFilter, setBiblicalPassgeFilter] = useState(null);
   const [keyWordsFilter, setKeyWordsFilter] = useState(null);
-  
+
   const [showFilter, setShowFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query) => setSearchQuery(query);
@@ -49,11 +45,7 @@ export default function Preaches(props) {
 
   //hacer card
   const renderCards = ({ item }) => {
-    return (
-      <View>
-        <Text>{item.name}</Text>
-      </View>
-    );
+    return <PreachCard item={item} />;
   };
 
   const fetchData = async () => {
@@ -102,13 +94,13 @@ export default function Preaches(props) {
         hideFilterItem={setShowFilter}
         filterComponent={
           <PreachesFilter
-          updateFilter={updateFilterParams}
-          initialDate={initialDateFilter}
-          finalDate={finalDateFilter}
-          biblicalPassge={biblicalPassgeFilter}
-          keyWords={keyWordsFilter}
-          showAlert={setShowFilter}
-        ></PreachesFilter>
+            updateFilter={updateFilterParams}
+            initialDate={initialDateFilter}
+            finalDate={finalDateFilter}
+            biblicalPassge={biblicalPassgeFilter}
+            keyWords={keyWordsFilter}
+            showAlert={setShowFilter}
+          ></PreachesFilter>
         }
       ></Filter>
     </View>

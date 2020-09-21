@@ -10,6 +10,7 @@ import { Searchbar } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import EventsFilter from "../components/EventsFilter";
 import Filter from "../components/Filter";
+import EventCard from "../components/EventCard";
 
 export default function Events(props) {
   //filter values
@@ -17,7 +18,7 @@ export default function Events(props) {
   const [finalDateFilter, setFinalDateFilter] = useState(null);
   const [biblicalPassgeFilter, setBiblicalPassgeFilter] = useState(null);
   const [keyWordsFilter, setKeyWordsFilter] = useState(null);
-  
+
   const [showFilter, setShowFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query) => setSearchQuery(query);
@@ -52,7 +53,7 @@ export default function Events(props) {
 
   //hacer card
   const renderCards = ({ item }) => {
-    return <Text>{item.name}</Text>;
+    return <EventCard item={item} />;
   };
 
   const fetchData = async () => {
@@ -101,13 +102,13 @@ export default function Events(props) {
         hideFilterItem={setShowFilter}
         filterComponent={
           <EventsFilter
-          updateFilter={updateFilterParams}
-          initialDate={initialDateFilter}
-          finalDate={finalDateFilter}
-          biblicalPassge={biblicalPassgeFilter}
-          keyWords={keyWordsFilter}
-          showAlert={setShowFilter}
-        ></EventsFilter>
+            updateFilter={updateFilterParams}
+            initialDate={initialDateFilter}
+            finalDate={finalDateFilter}
+            biblicalPassge={biblicalPassgeFilter}
+            keyWords={keyWordsFilter}
+            showAlert={setShowFilter}
+          ></EventsFilter>
         }
       ></Filter>
     </View>

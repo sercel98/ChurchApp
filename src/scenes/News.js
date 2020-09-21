@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import Filter from "../components/Filter";
+import NewsCard from "../components/NewsCard";
 import NewsFilter from "../components/NewsFilter";
 
 export default function News(props) {
@@ -33,7 +34,7 @@ export default function News(props) {
 
   //hacer card
   const renderCards = ({ item }) => {
-    return <Text>{item.name}</Text>;
+    return <NewsCard item={item} />;
   };
 
   const renderFilterItem = () => {
@@ -98,13 +99,13 @@ export default function News(props) {
         hideFilterItem={setShowFilter}
         filterComponent={
           <NewsFilter
-          updateFilter={updateFilterParams}
-          initialDate={initialDateFilter}
-          finalDate={finalDateFilter}
-          biblicalPassge={biblicalPassgeFilter}
-          keyWords={keyWordsFilter}
-          showAlert={setShowFilter}
-        ></NewsFilter>
+            updateFilter={updateFilterParams}
+            initialDate={initialDateFilter}
+            finalDate={finalDateFilter}
+            biblicalPassge={biblicalPassgeFilter}
+            keyWords={keyWordsFilter}
+            showAlert={setShowFilter}
+          ></NewsFilter>
         }
       ></Filter>
     </View>

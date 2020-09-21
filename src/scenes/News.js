@@ -7,9 +7,17 @@ import {
   FlatList,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Filter from "../components/Filter";
+import NewsFilter from "../components/NewsFilter";
 
 export default function News(props) {
+  //filter values
+  const [initialDateFilter, setInitialDateFilter] = useState(null);
+  const [finalDateFilter, setFinalDateFilter] = useState(null);
+  const [biblicalPassgeFilter, setBiblicalPassgeFilter] = useState(null);
+  const [keyWordsFilter, setKeyWordsFilter] = useState(null);
+
+  const [showFilter, setShowFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query) => setSearchQuery(query);
 
@@ -26,6 +34,22 @@ export default function News(props) {
   //hacer card
   const renderCards = ({ item }) => {
     return <Text>{item.name}</Text>;
+  };
+
+  const renderFilterItem = () => {
+    setShowFilter(true);
+  };
+
+  const updateFilterParams = (
+    initialDate,
+    finalDate,
+    bblicalPssg,
+    keyWords
+  ) => {
+    setInitialDateFilter(initialDate);
+    setFinalDateFilter(finalDate);
+    setBiblicalPassgeFilter(bblicalPssg);
+    setKeyWordsFilter(keyWords);
   };
 
   const fetchData = async () => {
@@ -68,9 +92,21 @@ export default function News(props) {
         initialNumToRender={30}
         keyExtractor={(item, index) => item.name}
       />
-      <TouchableOpacity style={styles.filterButton}>
-        <MaterialCommunityIcons name="filter" size={30} color="white" />
-      </TouchableOpacity>
+      <Filter
+        showFilter={showFilter}
+        renderFilterItem={renderFilterItem}
+        hideFilterItem={setShowFilter}
+        filterComponent={
+          <NewsFilter
+          updateFilter={updateFilterParams}
+          initialDate={initialDateFilter}
+          finalDate={finalDateFilter}
+          biblicalPassge={biblicalPassgeFilter}
+          keyWords={keyWordsFilter}
+          showAlert={setShowFilter}
+        ></NewsFilter>
+        }
+      ></Filter>
     </View>
   );
 }

@@ -8,10 +8,35 @@ import {
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import EventsFilter from "../components/EventsFilter";
+import Filter from "../components/Filter";
 
 export default function Events(props) {
+  //filter values
+  const [initialDateFilter, setInitialDateFilter] = useState(null);
+  const [finalDateFilter, setFinalDateFilter] = useState(null);
+  const [biblicalPassgeFilter, setBiblicalPassgeFilter] = useState(null);
+  const [keyWordsFilter, setKeyWordsFilter] = useState(null);
+  
+  const [showFilter, setShowFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query) => setSearchQuery(query);
+
+  const renderFilterItem = () => {
+    setShowFilter(true);
+  };
+
+  const updateFilterParams = (
+    initialDate,
+    finalDate,
+    bblicalPssg,
+    keyWords
+  ) => {
+    setInitialDateFilter(initialDate);
+    setFinalDateFilter(finalDate);
+    setBiblicalPassgeFilter(bblicalPssg);
+    setKeyWordsFilter(keyWords);
+  };
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
@@ -68,9 +93,21 @@ export default function Events(props) {
         initialNumToRender={30}
         keyExtractor={(item, index) => item.name}
       />
-      <TouchableOpacity style={styles.filterButton}>
-        <MaterialCommunityIcons name="filter" size={30} color="white" />
-      </TouchableOpacity>
+      <Filter
+        showFilter={showFilter}
+        renderFilterItem={renderFilterItem}
+        hideFilterItem={setShowFilter}
+        filterComponent={
+          <EventsFilter
+          updateFilter={updateFilterParams}
+          initialDate={initialDateFilter}
+          finalDate={finalDateFilter}
+          biblicalPassge={biblicalPassgeFilter}
+          keyWords={keyWordsFilter}
+          showAlert={setShowFilter}
+        ></EventsFilter>
+        }
+      ></Filter>
     </View>
   );
 }

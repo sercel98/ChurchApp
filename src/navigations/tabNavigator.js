@@ -42,7 +42,7 @@ export default function TabNavigator() {
         name="Home"
         component={Home}
         options={{
-          tabBarLabel: "Home",
+          tabBarLabel: "Inicio",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" size={26} color={color} />
           ),

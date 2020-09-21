@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { Text, StyleSheet, TextInput } from "react-native";
 import DatePicker from "react-native-datepicker";
 
-export default function PreachesFilter(props) {
+export default function BlogsFilter(props) {
   const [initialDate, setInitialDate] = useState(props.initialDate);
   const [finalDate, setFinalDate] = useState(props.finalDate);
   const [biblicalPassge, setBiblicalPassge] = useState(props.biblicalPassge);

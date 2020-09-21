@@ -3,18 +3,41 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   FlatList,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import BlogCard from "../components/BlogCard";
 import { AppLoading } from "expo";
+import BlogsFilter from "../components/BlogsFilter";
+import Filter from "../components/Filter";
 
 export default function Blog(props) {
+  //filter values
+  const [initialDateFilter, setInitialDateFilter] = useState(null);
+  const [finalDateFilter, setFinalDateFilter] = useState(null);
+  const [biblicalPassgeFilter, setBiblicalPassgeFilter] = useState(null);
+  const [keyWordsFilter, setKeyWordsFilter] = useState(null);
+
+  const [showFilter, setShowFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   const [filteredData, setFilteredData] = useState([]);
+
+  const renderFilterItem = () => {
+    setShowFilter(true);
+  };
+
+  const updateFilterParams = (
+    initialDate,
+    finalDate,
+    bblicalPssg,
+    keyWords
+  ) => {
+    setInitialDateFilter(initialDate);
+    setFinalDateFilter(finalDate);
+    setBiblicalPassgeFilter(bblicalPssg);
+    setKeyWordsFilter(keyWords);
+  };
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
@@ -100,9 +123,21 @@ export default function Blog(props) {
         initialNumToRender={30}
         keyExtractor={(item, index) => item.name}
       />
-      <TouchableOpacity style={styles.filterButton}>
-        <MaterialCommunityIcons name="filter" size={30} color="white" />
-      </TouchableOpacity>
+      <Filter
+        showFilter={showFilter}
+        renderFilterItem={renderFilterItem}
+        hideFilterItem={setShowFilter}
+        filterComponent={
+          <BlogsFilter
+            updateFilter={updateFilterParams}
+            initialDate={initialDateFilter}
+            finalDate={finalDateFilter}
+            biblicalPassge={biblicalPassgeFilter}
+            keyWords={keyWordsFilter}
+            showAlert={setShowFilter}
+          ></BlogsFilter>
+        }
+      ></Filter>
     </View>
   );
 }

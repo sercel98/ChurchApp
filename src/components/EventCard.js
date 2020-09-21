@@ -2,11 +2,11 @@ import React from "react";
 import { StyleSheet, Image, View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const BlogCard = ({ item }) => {
+const EventCard = ({ item }) => {
   const navigation = useNavigation();
 
   const goDetail = (item) => {
-    navigation.navigate("BlogDetail", { blog: item });
+    navigation.navigate("EventDetail", { event: item });
   };
 
   return (
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BlogCard;
+export default EventCard;

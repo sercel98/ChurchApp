@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import BlogCard from "../components/BlogCard";
 import { AppLoading } from "expo";
 
 export default function Blog(props) {
@@ -26,13 +27,8 @@ export default function Blog(props) {
 
   const api = `https://pokeapi.co/api/v2/pokemon?offset=${page}&limit=${limit}`;
 
-  //hacer card
   const renderCards = ({ item }) => {
-    return (
-      <View>
-        <Text>{item.name}</Text>
-      </View>
-    );
+    return <BlogCard item={item} />;
   };
 
   const onChangeSearch = (query) => setSearchQuery(query);
@@ -96,12 +92,12 @@ export default function Blog(props) {
       />
       <FlatList
         style={styles.itemList}
-        ItemSeparatorComponent={() => <View style={{ height: 15 }} />}
+        ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
         renderItem={renderCards}
         onEndReached={onLoadMore}
         data={filteredData}
         onEndReachedThreshold={0.5}
-        initialNumToRender={10}
+        initialNumToRender={30}
         keyExtractor={(item, index) => item.name}
       />
       <TouchableOpacity style={styles.filterButton}>
@@ -114,7 +110,7 @@ export default function Blog(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 12,
+    marginHorizontal: 20,
   },
   filterButton: {
     position: "absolute",
@@ -131,5 +127,8 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: "Roboto_700Bold",
     marginBottom: 8,
+  },
+  itemList: {
+    marginTop: 20,
   },
 });

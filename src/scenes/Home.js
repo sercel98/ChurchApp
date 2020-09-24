@@ -135,7 +135,7 @@ export default function Home(props) {
         </View>
         <View style={styles.section}>
           <Text style={styles.textSection}>Eventos recientes</Text>
-          <HorizontalList data={predicasData} />
+          <HorizontalList data={predicasData}/>
         </View>
       </View>
     </ScrollView>
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     marginHorizontal: 12,
-    marginVertical: 8,
+    marginVertical: 5,
   },
   textSection: {
     fontSize: 22,

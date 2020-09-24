@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Image, View, FlatList } from "react-native";
+import HomeCard from "../components/HomeCard";
 
 const HorizontalList = ({ data }) => {
   return (
@@ -7,7 +8,7 @@ const HorizontalList = ({ data }) => {
       style={styles.itemList}
       horizontal
       showsHorizontalScrollIndicator={false}
-      ItemSeparatorComponent={() => <View style={{ width: 15 }} />}
+      ItemSeparatorComponent={() => <View style={{ width: 2 }} />}
       renderItem={renderCards}
       data={data}
     />
@@ -22,10 +23,7 @@ const styles = StyleSheet.create({
 
 const renderCards = ({ item }) => {
   return (
-    <Image
-      style={{ width: 140, height: 140 }}
-      source={{ uri: item.image }}
-    ></Image>
+      <HomeCard item={item}></HomeCard>
   );
 };
 

@@ -12,6 +12,11 @@ export default function Home(props) {
   const [hasError, setErrors] = useState(false);
   const limit = 30;
 
+  const EVENT_TYPE = "event";
+  const PREACH_TYPE = "preach";
+  const NEWS_TYPE = "news";
+  const BLOG_TYPE = "blog";
+
   const api = `https://pokeapi.co/api/v2/pokemon?offset=${page}&limit=${limit}`;
 
   //hacer card
@@ -123,19 +128,19 @@ export default function Home(props) {
       <View style={styles.container}>
         <View style={styles.section}>
           <Text style={styles.textSection}>Prédicas recientes</Text>
-          <HorizontalList data={predicasData} />
+          <HorizontalList data={predicasData} type={PREACH_TYPE} />
         </View>
         <View style={styles.section}>
           <Text style={styles.textSection}>Noticias recientes</Text>
-          <HorizontalList data={predicasData} />
+          <HorizontalList data={predicasData} type={NEWS_TYPE} />
         </View>
         <View style={styles.section}>
           <Text style={styles.textSection}>Blogs recientes</Text>
-          <HorizontalList data={predicasData} />
+          <HorizontalList data={predicasData} type={BLOG_TYPE} />
         </View>
         <View style={styles.section}>
           <Text style={styles.textSection}>Eventos recientes</Text>
-          <HorizontalList data={predicasData}/>
+          <HorizontalList data={predicasData} type={EVENT_TYPE}/>
         </View>
       </View>
     </ScrollView>

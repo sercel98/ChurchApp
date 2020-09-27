@@ -1,8 +1,13 @@
 import React from "react";
-import { StyleSheet, Image, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import HomeCard from "../components/HomeCard";
 
-const HorizontalList = ({ data }) => {
+export default function HorizontalList(props) {
+  const { data, type } = props;
+  const renderCards = ({ item, index }) => {
+    console.log("HOMECARD", type);
+    return <HomeCard item={item} index={index} type={type}></HomeCard>;
+  };
   return (
     <FlatList
       style={styles.itemList}
@@ -11,20 +16,13 @@ const HorizontalList = ({ data }) => {
       ItemSeparatorComponent={() => <View style={{ width: 2 }} />}
       renderItem={renderCards}
       data={data}
+      keyExtractor={(item, index) => item.key}
     />
   );
-};
+}
 
 const styles = StyleSheet.create({
   itemList: {
     marginVertical: 8,
   },
 });
-
-const renderCards = ({ item }) => {
-  return (
-      <HomeCard item={item}></HomeCard>
-  );
-};
-
-export default HorizontalList;

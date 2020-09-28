@@ -30,7 +30,7 @@ export default function PreachDetail(props) {
           "xd lorem impsum no se que más dice lorem impsum no se que más dice lorem impsum " +
           "no se que más dice lorem impsum no se que más dice.  \nLorem impsum no se que más dice"}
       </Text>
-      
+
       <Text style={styles.dateText}>{"Publicado el: 20/12/2020"}</Text>
     </View>
   );
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 12,
+    paddingTop: 12,
   },
   titleText: {
     fontSize: 26,

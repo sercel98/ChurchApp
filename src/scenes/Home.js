@@ -19,11 +19,6 @@ export default function Home(props) {
 
   const api = `https://pokeapi.co/api/v2/pokemon?offset=${page}&limit=${limit}`;
 
-  //hacer card
-  const renderCards = ({ item }) => {
-    return <Text>{item.name}</Text>;
-  };
-
   const predicasData = [
     {
       key: "1",
@@ -140,7 +135,7 @@ export default function Home(props) {
         </View>
         <View style={styles.section}>
           <Text style={styles.textSection}>Eventos recientes</Text>
-          <HorizontalList data={predicasData} type={EVENT_TYPE}/>
+          <HorizontalList data={predicasData} type={EVENT_TYPE} />
         </View>
       </View>
     </ScrollView>
@@ -152,6 +147,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
+    marginTop: 8,
   },
   section: {
     flex: 1,

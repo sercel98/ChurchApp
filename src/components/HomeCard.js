@@ -8,14 +8,8 @@ const NEWS_TYPE = "news";
 const BLOG_TYPE = "blog";
 
 export default function HomeCard(props) {
-  const { item, index, type } = props;
+  const { item, type } = props;
   const navigation = useNavigation();
-
-  //TODO: quitar este debug
-  useEffect(() => {
-    console.log("dentro de homeCard", item);
-    console.log("TIPO DEL CARD", type);
-  }, []);
 
   const goToDetail = () => {
     if (type === EVENT_TYPE) {

@@ -41,7 +41,7 @@ export default function Blog(props) {
   //TODO: Agregar mensaje de error si los hay.
   const [hasError, setErrors] = useState(false);
 
-  const limit = 30;
+  const limit = 15;
 
   const api = `https://pokeapi.co/api/v2/pokemon?offset=${page}&limit=${limit}`;
 
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 12,
+    paddingTop: 12,
   },
   filterButton: {
     position: "absolute",

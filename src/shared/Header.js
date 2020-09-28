@@ -4,11 +4,10 @@ import {
   StyleSheet,
   View,
   StatusBar,
-  Text,
   TouchableOpacity,
 } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Header(props) {
   const { navigation } = props;
@@ -19,15 +18,29 @@ export default function Header(props) {
   };
 
   const goBack = () => navigation.goBack();
+
   return (
     <View style={styles.header}>
       <StatusBar barStyle="light-content" />
-      <TouchableOpacity style={{paddingTop:12}}onPress={goHome}>
+      {route.name !== "Tab" ? (
+        <TouchableOpacity style={styles.goBackContainer} onPress={goBack}>
+          <Ionicons
+            name="ios-arrow-round-back"
+            style={styles.goBackButton}
+            size={30}
+            color="black"
+          />
+        </TouchableOpacity>
+      ) : (
+        <View style={styles.emptyContainer}></View>
+      )}
+      <TouchableOpacity style={styles.homeIconContainer} onPress={goHome}>
         <Image
           style={styles.headerLogo}
           source={require("../../assets/images/imageHeader.png")}
         />
       </TouchableOpacity>
+      <View style={styles.emptyContainer}></View>
     </View>
   );
 }
@@ -37,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#FFF",
     shadowColor: "#000",
-    justifyContent: "center",
+    justifyContent: "space-between",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -52,8 +65,18 @@ const styles = StyleSheet.create({
     height: 45,
     alignSelf: "center",
   },
-  headerIcon: {
-    color: "#000",
-    position: "absolute",
+  goBackContainer: {
+    paddingTop: 12,
+    width: 45,
+    paddingLeft: 22,
+  },
+  homeIconContainer: {
+    paddingTop: 8,
+  },
+  goBackButton: {
+    alignSelf: "flex-start",
+  },
+  emptyContainer: {
+    width: 45,
   },
 });
